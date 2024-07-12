@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Employee Attrition prediction
+    </title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        background-color: #f4f4f4;
+      }
+
+      form {
+        background: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 70%;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      label {
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input,
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        background-color: #28a745;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      h3 {
+        text-align: center;
+        color: #333;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form action="{{ url_for('predict') }}" method="POST">
+      <h1>ENTER EMPLOYEE DETAILS</h1>
+      <label for="satisfaction_level"
+        >Satisfaction level (1-5)</label
+      >
+      <input type="text" id="satisfaction_level" name="satisfaction_level" />
+
+      <label for="last_evaluation">Last Evaluation (1-5)</label>
+      <input type="text" id="last_evaluation" name="last_evaluation" />
+
+      <label for="number_project">No of projects</label>
+      <input type="text" id="number_project" name="number_project" />
+
+      <label for="average_montly_hours">Average monthly hours</label>
+      <input
+        type="text"
+        id="average_montly_hours"
+        name="average_montly_hours"
+      />
+
+      <label for="time_spend_company">Years spent at the company</label>
+      <input type="text" id="time_spend_company" name="time_spend_company" />
+
+      <label for="Work_accident">Whether met with accident?</label>
+      <select id="Work_accident" name="Work_accident">
+        <option value="" disabled selected>Select an option</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+
+      <label for="promotion">Whether promoted in last 5 years?</label>
+      <select id="promotion" name="promotion">
+        <option value="" disabled selected>Select an option</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+
+      <label for="salary">Salary</label>
+      <select id="salary" name="salary">
+        <option value="" disabled selected>Select an option</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <button id="submit" type="submit">Check</button>
+    </form>
+
+    <h3>{{ prediction_text }}</h3>
+  </body>
+</html>
